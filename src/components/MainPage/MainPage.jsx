@@ -5,8 +5,11 @@ import { FaRegEdit } from "react-icons/fa";
 import You from "./You/You";
 import Soul from "./Soul/Soul";
 let finalData = [];
+let historyData;
 const MainPage = () => {
-  const [chating, setChating] = useState(false);
+  const [firstPage, setFirstPage] = useState(true);
+  const [chattingPage, setChatingPage] = useState(false);
+  const [historyPage, setHistoryPage] = useState(false);
   const [ques, setQues] = useState("");
   const now = new Date();
   let hours = now.getHours();
@@ -320,10 +323,15 @@ const MainPage = () => {
   const saveHandler = () => {
     localStorage.setItem("chat", JSON.stringify(finalData));
     finalData = [];
-    setChating(false);
+    setChatingPage(false);
+
+    setHistoryPage(false);
+    setFirstPage(true);
   };
   const askHandler = () => {
-    setChating(true);
+    setHistoryPage(false);
+    setFirstPage(false);
+    setChatingPage(true);
     let matchFound = false;
     data.map((data) => {
       if (
@@ -342,7 +350,13 @@ const MainPage = () => {
   };
   const questionHandler = (e) => {
     setQues(e.target.value);
-    console.log(e.target.value);
+  };
+  const historyHandler = () => {
+    setFirstPage(false);
+    setChatingPage(false);
+    setHistoryPage(true);
+    historyData = JSON.parse(localStorage.getItem("chat"));
+    console.log(historyData);
   };
   return (
     <div className="main-cont">
@@ -353,27 +367,12 @@ const MainPage = () => {
           <FaRegEdit fontSize={"20px"} />
         </div>
         <div className="history-btn">
-          <button>Past Conversations</button>
+          <button onClick={historyHandler}>Past Conversations</button>
         </div>
       </div>
       <div className="main-page">
         <div className="app-name">Bot AI</div>
-        {chating ? (
-          <div className="chat-conversation">
-            {finalData.map((data) => {
-              return (
-                <>
-                  <You key={data.id} ques={data.question} time={data.time} />
-                  <Soul
-                    key={data.id + 0.5}
-                    res={data.response}
-                    time={data.time}
-                  />
-                </>
-              );
-            })}
-          </div>
-        ) : (
+        {firstPage && (
           <div>
             <div className="app-greet">
               <div>How Can I Help You Today?</div>
@@ -412,6 +411,41 @@ const MainPage = () => {
               </div>
             </div>
           </div>
+        )}
+        {chattingPage && (
+          <div className="chat-conversation">
+            {finalData.map((data) => {
+              return (
+                <>
+                  <You key={data.id} ques={data.question} time={data.time} />
+                  <Soul
+                    key={data.id + 0.5}
+                    res={data.response}
+                    time={data.time}
+                  />
+                </>
+              );
+            })}
+          </div>
+        )}
+        {historyPage && (
+          <>
+            <h2 style={{ textAlign: "center" }}>Conversation History</h2>
+            <div className="chat-conversation">
+              {historyData.map((data) => {
+                return (
+                  <>
+                    <You key={data.id} ques={data.question} time={data.time} />
+                    <Soul
+                      key={data.id + 0.5}
+                      res={data.response}
+                      time={data.time}
+                    />
+                  </>
+                );
+              })}
+            </div>
+          </>
         )}
         <div className="app-interact-cont">
           <div className="input-cont">
