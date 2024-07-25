@@ -333,16 +333,18 @@ const MainPage = () => {
     setFirstPage(false);
     setChatingPage(true);
     let matchFound = false;
-    data.map((data) => {
-      if (
-        data.question.toLocaleLowerCase().includes(ques.toLocaleLowerCase())
-      ) {
-        finalData.push({ ...data, time: currTime });
+    if (ques !== "") {
+      data.map((data) => {
+        if (
+          data.question.toLocaleLowerCase().includes(ques.toLocaleLowerCase())
+        ) {
+          finalData.push({ ...data, time: currTime });
 
-        setQues("");
-        matchFound = true;
-      }
-    });
+          setQues("");
+          matchFound = true;
+        }
+      });
+    }
     if (!matchFound) {
       alert("No Match Found");
     }
