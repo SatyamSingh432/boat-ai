@@ -134,3 +134,11 @@
   border-radius: 5px;
   background: rgba(215, 199, 244, 1);
 }
+.chat-conversation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: end;
+  height: 66%;
+  overflow: hidden;
+}
