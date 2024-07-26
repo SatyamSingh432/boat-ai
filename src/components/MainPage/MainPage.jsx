@@ -22,17 +22,17 @@ const MainPage = () => {
   const data = [
     {
       id: 1,
-      question: "Hi, what is the weather",
+      question: "Hi, what is the weather?",
       response: "Today weather is partly cloudy ",
     },
     {
       id: 2,
-      question: "Hi, what is my location",
+      question: "Hi, what is my location?",
       response: "Currently you are in UP, INDIA",
     },
     {
       id: 3,
-      question: "Hi, what is the temperature",
+      question: "Hi, what is the temperature?",
       response: "Today's temp is 24 C",
     },
     {
@@ -42,7 +42,7 @@ const MainPage = () => {
     },
     {
       id: 5,
-      question: "Hi, how are you",
+      question: "Hi, how are you?",
       response: "I am fine.How about you?.",
     },
     {

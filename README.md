@@ -1,8 +1,12 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1- for this project mostly i use vanilla css
+2-in this app u can only ask selected question like --
+i-Hi, what is the weather?
+ii-Hi, what is my location?
+iii-Hi, what is the temperature?
+iv-Hi, how are you?
+v-Hi, What is my Name?
+3- by click on ASK button u can ask questions..
+4 -by click on save button u can save chat
+5 - by click on Past Conversations u can see the saved chats
+6 on hover or SOUL ai container the start rating visible
+7 on click on thumbs up button modal window gets open..
