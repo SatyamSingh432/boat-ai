@@ -1,11 +1,13 @@
 .chat-Soul-cont {
   display: flex;
   height: 105px;
-  background: rgba(215, 199, 244, 0.13);
+  background: rgb(215, 199, 244);
   border-radius: 20px;
   align-items: center;
   padding-left: 25px;
   gap: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 96%;
 }
 .chat-Soul-cont-content {
@@ -25,7 +27,15 @@
   font-weight: 400;
 }
 .chat-Soul-cont-time {
+  display: flex;
+  gap: 20px;
   font-size: 12px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.62);
+}
+.show-star {
+  display: block;
+}
+.hide-star {
+  display: none;
 }

@@ -321,6 +321,23 @@ const MainPage = () => {
     },
   ];
   const saveHandler = () => {
+    const oldData = localStorage.getItem("chat");
+    if (finalData[0] === "") {
+      return;
+    }
+    console.log(JSON.parse(oldData));
+    if (oldData) {
+      localStorage.setItem(
+        "chat",
+        JSON.stringify([...JSON.parse(oldData), ...finalData])
+      );
+      finalData = [];
+      setChatingPage(false);
+
+      setHistoryPage(false);
+      setFirstPage(true);
+      return;
+    }
     localStorage.setItem("chat", JSON.stringify(finalData));
     finalData = [];
     setChatingPage(false);
@@ -357,7 +374,7 @@ const MainPage = () => {
     setFirstPage(false);
     setChatingPage(false);
     setHistoryPage(true);
-    historyData = JSON.parse(localStorage.getItem("chat"));
+    historyData = JSON.parse(localStorage.getItem("chat")) || [];
     console.log(historyData);
   };
   return (
@@ -416,25 +433,8 @@ const MainPage = () => {
         )}
         {chattingPage && (
           <div className="chat-conversation">
-            {finalData.map((data) => {
-              return (
-                <>
-                  <You key={data.id} ques={data.question} time={data.time} />
-                  <Soul
-                    key={data.id + 0.5}
-                    res={data.response}
-                    time={data.time}
-                  />
-                </>
-              );
-            })}
-          </div>
-        )}
-        {historyPage && (
-          <>
-            <h2 style={{ textAlign: "center" }}>Conversation History</h2>
-            <div className="chat-conversation">
-              {historyData.map((data) => {
+            <div className="chat-scroll">
+              {finalData.map((data) => {
                 return (
                   <>
                     <You key={data.id} ques={data.question} time={data.time} />
@@ -446,6 +446,31 @@ const MainPage = () => {
                   </>
                 );
               })}
+            </div>
+          </div>
+        )}
+        {historyPage && (
+          <>
+            <h2 style={{ textAlign: "center" }}>Conversation History</h2>
+            <div className="chat-conversation">
+              <div className="chat-scroll">
+                {historyData.map((data) => {
+                  return (
+                    <>
+                      <You
+                        key={data.id}
+                        ques={data.question}
+                        time={data.time}
+                      />
+                      <Soul
+                        key={data.id + 0.5}
+                        res={data.response}
+                        time={data.time}
+                      />
+                    </>
+                  );
+                })}
+              </div>
             </div>
           </>
         )}
